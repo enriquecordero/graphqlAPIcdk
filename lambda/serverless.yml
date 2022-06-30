@@ -1,0 +1,26 @@
+
+
+service: graphql
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  state: dev
+
+plugins:
+  - serverless-offline
+
+
+functions:
+  graphql:
+    handler: index.graphqlHandler
+    events:
+      - http:
+          path: "{proxy+}"
+          method: any
+          cors: true
+
+
